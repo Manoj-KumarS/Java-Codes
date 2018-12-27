@@ -1,0 +1,30 @@
+import java.util.*;
+public class Hello {
+
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int x=sc.nextInt(),y=sc.nextInt();
+        boolean arr[]=new boolean[y+1];
+        for(int index=2;index<(y);index++)
+        {
+            arr[index]=true;
+        }
+        for(int index=2;index<Math.sqrt(y);index++)
+        {
+            for(int itr=index*index;arr[index]&&itr<=y;itr+=index)
+            {
+                if(arr[itr])
+                {
+                    arr[itr]=false;
+                }
+            }
+        }
+        for(int index=x;index<=y;index++)
+        {
+            if(arr[index])
+            {
+                System.out.print(index+" ");
+            }
+        }
+	}
+}

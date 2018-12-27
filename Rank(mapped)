@@ -1,0 +1,39 @@
+import java.util.*;
+public class Hello {
+
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt(),rank=sc.nextInt();
+        Map<Integer,List<String>> map=new HashMap<>();
+        for(int index=0;index<n;index++)
+        {
+            String name=sc.next();
+            int mark=sc.nextInt();
+            List<String> templist=map.getOrDefault(mark,new ArrayList<>());
+            templist.add(name);
+            map.put(mark,templist);
+        }
+        List<Integer> score=new ArrayList<>(map.keySet());
+        Collections.sort(score,Collections.reverseOrder());
+        int index=1;
+        for(int i:score)
+        {
+            if(rank==index)
+            {
+                ArrayList<String> li=new ArrayList<>(map.get(i));
+                Collections.sort(li);
+                for(String s:li)
+                {
+                System.out.println(s);
+                }
+                return;
+            }
+            else if(index>rank)
+            {
+                System.out.print("-1");
+                return;
+            }
+            index+=(map.get(i)).size();
+        }
+	}
+}

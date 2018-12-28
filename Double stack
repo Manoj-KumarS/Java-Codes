@@ -1,0 +1,38 @@
+import java.util.*;
+public class Hello {
+
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        char arr[]=sc.nextLine().toCharArray();
+        Stack<Character> undo=new Stack<>();
+        Stack<Character> redo=new Stack<>();
+        for(int index=0;index<arr.length;index++)
+        {
+            if(index+1<arr.length&&arr[index]=='^'&&arr[index+1]=='z')
+            {
+                if(!undo.isEmpty())
+                {
+                    redo.push(undo.pop());
+                }
+                index++;
+            }
+            else if(index+1<arr.length&&arr[index]=='^'&&arr[index+1]=='y')
+            {
+                if(!redo.isEmpty())
+                {
+                    undo.push(redo.pop());
+                }
+                index++;
+            }
+            else
+            {
+                undo.push(arr[index]);
+                redo.clear();
+            }
+        }
+        for(char ch:undo)
+        {
+            System.out.print(ch);
+        }
+	}
+}

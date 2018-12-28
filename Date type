@@ -1,0 +1,35 @@
+import java.util.*;
+import java.text.SimpleDateFormat;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.util.Date;
+public class Hello {
+
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt(),m=sc.nextInt();
+        sc.nextLine();
+        DateFormat sdf=new SimpleDateFormat("hh:mm");
+        try{
+            String temp=sc.nextLine();
+            Date d1=sdf.parse(temp);
+            int flag=n;
+            for(int i=0;i<flag;i++)
+            {
+                temp=sc.next();
+            if(d1.before(sdf.parse(temp)))
+            {
+                n--;
+            }
+            }
+        }
+        catch(Exception e)
+        {
+            System.out.print("Error");
+        }
+        if(n>=m)
+        System.out.print("NO");
+        else
+        System.out.print("YES");
+	}
+}

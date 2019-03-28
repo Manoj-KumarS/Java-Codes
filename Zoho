@@ -1,0 +1,295 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+struct studentInfo
+{
+	char studName[20];
+	int studAge;
+	char studGender;
+}studVar[5];
+
+int array[5]={0,1,2,3,4};//Initially contains all the elements
+int tempArray[5]={-1};
+int arrayLength=5;
+void update()
+{
+	int index=0;
+	while(tempArray[index]!=-1)
+	{
+		array[index]=tempArray[index];
+		index++;
+	}
+	printf("\nreached update");
+	arrayLength=index;
+}
+void fill()//Filling values in the table;
+{
+	strcpy(studVar[0].studName,"Joseph Jebakumar");
+	studVar[0].studAge=24;
+	studVar[0].studGender='T';
+	strcpy(studVar[1].studName,"Anjali");
+	studVar[1].studAge=21;
+	studVar[1].studGender='F';
+	strcpy(studVar[2].studName,"Rama Krishnan");
+	studVar[2].studAge=22;
+	studVar[2].studGender='T';
+	strcpy(studVar[3].studName,"Boomika Krishnamurthy");
+	studVar[3].studAge=20;
+	studVar[3].studGender='F';
+	strcpy(studVar[4].studName,"Usha Sivakumar");
+	studVar[4].studAge=22;
+	studVar[4].studGender='F';
+}
+int showAllRecords()//Print the current set of records;
+{
+	printf("S.No\tName\t\tAge\tMale/Female\n");
+	int index=0,length=arrayLength;
+	if(arrayLength==0)
+	{
+		return 0;
+	}
+	if(tempArray[0]==-1)
+	{
+		length=5;
+	}
+	for(index=0;index<length;index++)
+	{
+		printf("%d\t%s\t%d\t",index+1,studVar[index].studName,studVar[index].studAge);
+		if(studVar[index].studGender=='F')
+		{
+			printf("Female");
+		}
+		else
+		{
+			printf("Male");
+		}
+		printf("\n");
+	}
+	return 1;
+}
+int andContinue()
+{
+	printf("Do you want to add another criteria:Y/N:\n");
+	int yesOrNo;
+	scanf("%d",&yesOrNo);
+	printf("%d",yesOrNo);
+	return yesOrNo;
+}
+int showRecordsCriteria()
+{
+	printf("Name of the column to apply criteria\n1. Name\n2. Age\n3. Gender\n");
+	int secondChoice;
+	scanf("%d",&secondChoice);
+	switch(secondChoice)
+	{
+		case 1:
+			if(nameCondition()==0)
+			{
+				return 0;
+			}
+			break;
+		case 2:
+			if(ageCondition()==0)
+			{
+				return 0;
+			}
+			break;
+		case 3:
+			if(genderCondition()==0)
+			{
+				return 0;
+			}
+			break;
+		default:
+			printf("Invalid Entry");
+			showRecordsCriteria();
+	}
+	return 1;
+}
+int nameCondition()
+{
+	printf("Criteria to be applied\n1. Starts with\n2. Ends with\n3. Contains\n4. Not Contains\n");
+	int nameChoice;
+	scanf("%d",&nameChoice);
+	switch(nameChoice)
+	{
+		case 1:
+			if(startsWith()==0)
+			{
+				return 0;
+			}
+			break;
+		case 2:
+			if(endsWith()==0)
+			{
+				return 0;
+			}
+			break;
+		case 3:
+			if(contains()==0)
+			{
+				return 0;
+			}
+			break;
+		case 4:
+			if(notContains()==0)
+			{
+				return 0;
+			}
+			break;
+		default:
+			printf("Invalid entry");
+	}
+	return 1;
+}
+int ageCondition()
+{
+	printf("Criteria to be applied\n1. Greater than\n2. Less than\n3. Not Equal\n4. Equal\n");
+	int nameChoice;
+	scanf("%d",&nameChoice);
+	switch(nameChoice)
+	{
+		case 1:
+			if(greaterThan()==0)
+			{
+				return 0;
+			}
+			break;
+		case 2:
+			if(lessThan()==0)
+			{
+				return 0;
+			}
+			break;
+		case 3:
+			if(notEqual()==0)
+			{
+				return 0;
+			}
+			break;
+		case 4:
+			if(equalTo()==0)
+			{
+				return 0;
+			}
+			break;
+		default:
+			printf("Invalid entry");
+	}
+	return 1;
+}
+int genderCondition()
+{
+	printf("Criteria to be applied\n1. Male\n2. Female\n");
+	int genderSwitch;
+	scanf("%d",&genderSwitch);
+	char check;
+	switch(genderSwitch)
+	{
+		case 1:
+			check='T';
+			break;
+		case 2:
+			check='F';
+			break;
+		default:
+			printf("Invalid entry");
+	}
+	int index,tIndex=-1;
+	printf("S.No\tName\t\tAge\tMale/Female\n");
+	for(index=0;index<arrayLength;index++)
+	{
+		if(studVar[array[index]].studGender==check)
+		{
+			printf("%d\t%s\t%d\t",index+1,studVar[array[index]].studName,studVar[array[index]].studAge);
+			printf("Male");
+			tempArray[++tIndex]=array[index];
+			printf("\n");
+		}
+	}
+	if(tIndex==-1)
+	{
+		printf("NO MATCH");
+		return 0;
+	}
+	printf("\nreached printmale");
+	tempArray[++tIndex]=-1;
+	update();
+	return 1;
+}
+int greaterThan()
+{
+	int index,marker,index1=-1;
+	scanf("%d",&marker);
+	for(index=0;index<arrayLength;index++)
+	{
+		if(stdVar[array[index]].age>marker)
+		{
+			tempArray[++index1]=array[index];
+		}
+	}
+	tempArray[++index1]=
+	return 0;
+}
+int lessThan()
+{
+	return 0;	
+}
+int notEqual()
+{
+	return 0;	
+}
+int equalTo()
+{
+	return 0;
+}
+int startsWith()
+{
+	return 0;
+}
+int endsWith()
+{
+	return 0;
+}
+int contains()
+{
+	return 0;
+}
+int notContains()
+{
+	return 0;
+}
+int main(int argc, char *argv[]) {
+	fill();
+	while(1)
+	{
+		printf("Enter:\n1 to Show all records\n2 to show records based on Criteria\n3 to Exit\n");
+		int firstChoice;
+		scanf("%d",&firstChoice);
+		switch(firstChoice)
+		{
+			case 1://prints all the current values
+				showAllRecords();
+				if(andContinue()==0)
+				{
+					return 0;
+				}
+				else
+				break;
+			case 2://asks for conditions
+				showRecordsCriteria();
+				printf("\nreached main");
+				if(andContinue()==0)
+				{
+					return 0;
+				}
+				else
+				break;
+			case 3://exits the program
+				return 0;
+				break;
+			default://invalid entry
+				printf("Entry invalid");
+		}
+	}
+}
